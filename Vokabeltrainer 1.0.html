@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -10,19 +11,19 @@
 		var WortlisteDänisch = ["Hej!",		"jeg", 	"hedder",	"Danmark",	"pige",		"dreng",	"mand",		"kvinde",	"skole",	"skrive"];
 		//zum Überprüfen
 		alert(WortlisteDeutsch);
-		alert(WortlisteDeutsch[2]); 
+		alert(WortlisteDeutsch[2]);
 		alert(WortlisteDänisch);
 		alert(WortlisteDänisch[2]);
 		var Falsch = 0;
-		var Zaehler = 0;		
-		while (Zaehler < 10) {Antwort[Zaehler] = prompt("Was heißt " + WortlisteDeutsch[Zaehler] + " auf Dänisch?", "Bitte Übersetzung eingeben"); 
-		if(Antwort[Zaehler]!=WortlisteDänisch[Zaehler]){Falsch = Falsch + 1}; 
-		Zaehler = Zaehler + 1};		
+		var Zaehler = 0;
+		while (Zaehler < 10) {Antwort[Zaehler] = prompt("Was heißt " + WortlisteDeutsch[Zaehler] + " auf Dänisch?", "Bitte Übersetzung eingeben");
+		if(Antwort[Zaehler]!=WortlisteDänisch[Zaehler]){Falsch = Falsch + 1};
+		Zaehler = Zaehler + 1};
 		document.write("<br> Hier ist die Wortliste Deutsch:" + WortlisteDeutsch);
 		document.write("<br> Hier ist die Wortliste Dänisch:" + WortlisteDänisch);
 		document.write("<br> Hier sind deine Antworten:" + Antwort);
 		document.write("<br> Du hast " + Falsch + " falsch beantwortet.");
-	
+
 
 		</script>
 	</body>
