@@ -1,0 +1,27 @@
+/* Set all paddings and margins to 0 to avoid pre */
+*{
+    padding: 0px;
+    margin: 0px;
+}
+/* General font and body background color */
+
+body{
+    font-size: 15px; 
+    font-family: arial, sans-serif;
+    background-color:#FFFF99;
+    }
+
+/* Style text environment */
+#wrapper{
+    max-width:800px;
+    margin: 0 auto; /* top/bottom: 0 - sides: centering */
+    border: thin #FFDD11 solid;
+    background-color:#FFCC00;
+    padding: 30px 20px;
+    min-height: 800px;
+    }
+
+/* Increase spacing for h1 */
+h1{
+    line-height: 2em;
+}
