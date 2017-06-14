@@ -47,13 +47,12 @@
                     while (Zaehler < 10) 
                     // All answers are added to generel Antwort-Array into respective position:
                     {Antwort[Reihenfolge[Zaehler]] = prompt(WortlisteDeutsch[Reihenfolge[Zaehler]], "Bitte Übersetzung eingeben");
-                    // If incorrect, add to F(alse)A(nswer)-Array and add 1 to Falsch-counter. Do not add 1 to general counter so question is asked again:
-                    if(Antwort[Reihenfolge[Zaehler]]!=WortlisteDänisch[Reihenfolge[Zaehler]]){FA[Falsch] = Antwort[Reihenfolge[Zaehler]]; Falsch = Falsch + 1};
-                    // Way out: Type "Stop" to move to next word.
-                    if(Antwort[Reihenfolge[Zaehler]]=="Stop"){/*FA[Falsch] = Antwort[Reihenfolge[Zaehler]]; Falsch = Falsch + 1*/; Zaehler = Zaehler + 1};
                     // If correct, add to R(ight)A(nswer)-Array and add 1 to Richtig-counter. Add 1 to general counter to move to next word:
-                    if(Antwort[Reihenfolge[Zaehler]]==WortlisteDänisch[Reihenfolge[Zaehler]]){RA[Richtig] = Antwort[Reihenfolge[Zaehler]]; Richtig = Richtig + 1; Zaehler = Zaehler + 1};
-                    };
+                    if(Antwort[Reihenfolge[Zaehler]]==WortlisteDänisch[Reihenfolge[Zaehler]]){RA[Richtig] = Antwort[Reihenfolge[Zaehler]]; Richtig = Richtig + 1; Zaehler = Zaehler + 1}
+                    // Way out: Type "Stop" to move to next word.
+                    else if(Antwort[Reihenfolge[Zaehler]]=="Stop"){FA[Falsch] = Antwort[Reihenfolge[Zaehler]]; Falsch = Falsch + 1; Zaehler = Zaehler + 1}
+                    // If incorrect, add to F(alse)A(nswer)-Array and add 1 to Falsch-counter. Do not add 1 to general counter so question is asked again:
+                    else {FA[Falsch] = Antwort[Reihenfolge[Zaehler]]; Falsch = Falsch + 1}};
                     // Print all results:
                     document.write("<br><br> Hier ist die Wortliste Deutsch:" + WortlisteDeutsch);
                     document.write("<br><br> Hier ist die Wortliste Dänisch:" + WortlisteDänisch);
