@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8"> <!-- character encoding -->
+        <link rel="stylesheet" href="style.css"> <!-- CSS style sheet -->
 		<title>Vokabeltrainer - Versuch 1</title>
 	</head>
-	<body>21.05.2017 - Vokabeltrainer - Versuch 1
-		<script type="text/javascript">
-		var Antwort = new Array;
-		var WortlisteDeutsch = ["Hallo!", 	"ich", 	"heißen", 	"Dänemark", "Mädchen", 	"Junge", 	"Mann", 	"Frau", 	"Schule", 	"schreiben"];
-		var WortlisteDänisch = ["Hej!",		"jeg", 	"hedder",	"Danmark",	"pige",		"dreng",	"mand",		"kvinde",	"skole",	"skrive"];
-		//zum Überprüfen
-		alert(WortlisteDeutsch);
-		alert(WortlisteDeutsch[2]);
-		alert(WortlisteDänisch);
-		alert(WortlisteDänisch[2]);
-		var Falsch = 0;
-		var Zaehler = 0;
-		while (Zaehler < 10) {Antwort[Zaehler] = prompt("Was heißt " + WortlisteDeutsch[Zaehler] + " auf Dänisch?", "Bitte Übersetzung eingeben");
-		if(Antwort[Zaehler]!=WortlisteDänisch[Zaehler]){Falsch = Falsch + 1};
-		Zaehler = Zaehler + 1};
-		document.write("<br> Hier ist die Wortliste Deutsch:" + WortlisteDeutsch);
-		document.write("<br> Hier ist die Wortliste Dänisch:" + WortlisteDänisch);
-		document.write("<br> Hier sind deine Antworten:" + Antwort);
-		document.write("<br> Du hast " + Falsch + " falsch beantwortet.");
-
-
-		</script>
+	<body>
+        <div id="wrapper"> <!-- Added to reduce text width (see style.css) -->
+            <h1>21.05.2017 - Vokabeltrainer - Versuch 1</h1>
+            <p>Was er kann: Vokabeltrainer fragt immer in der gleichen Reihenfolge genau ein Mal nach 10 dänischen Vokabeln. Am Schluss wird angegeben, wie viele und welche Vokabeln richtig oder falsch beantwortet wurden. </p>
+            <p>
+                <script type="text/javascript">
+                    // 2 Arrays containing vocab:
+                    var WortlisteDeutsch = ["Hallo!", 	"ich", 	"heißen", 	"Dänemark", "Mädchen", 	"Junge", 	"Mann", 	"Frau", 	"Schule", 	"schreiben"];
+                    var WortlisteDänisch = ["Hej!",		"jeg", 	"hedde",	"Danmark",	"pige",		"dreng",	"mand",		"kvinde",	"skole",	"skrive"];
+                    var Antwort = new Array; // New array for all answers
+                    var RA = new Array; // New array for all correct answers
+                    var FA = new Array; // New array for all incorrect answers
+                    var Zaehler = 0; // counter for while-loop
+                    var Richtig = 0; // counter for correct answers
+                    var Falsch = 0; // counter for incorrect answers
+                    alert("Bitte übersetze die folgenden Wörter ins Dänische.") // Instructions
+                    // while-loop: Ask for translations until counter reaches 10.
+                    while (Zaehler < 10) 
+                    // All answers are added to generel Antwort-Array into respective position:
+                    {Antwort[Zaehler] = prompt(WortlisteDeutsch[Zaehler], "Bitte Übersetzung eingeben");
+                    // If correct, add to R(ight)A(nswer)-Array and add 1 to Richtig-counter:
+                    if(Antwort[Zaehler]==WortlisteDänisch[Zaehler]){RA[Richtig] = Antwort[Zaehler]; Richtig = Richtig + 1}; 
+                    // If incorrect, add to F(alse)A(nswer)-Array and add 1 to Falsch-counter:
+                    if(Antwort[Zaehler]!=WortlisteDänisch[Zaehler]){FA[Falsch] = Antwort[Zaehler]; Falsch = Falsch + 1};
+                    // Add 1 to general counter in order to move to next word:
+                    Zaehler = Zaehler + 1};
+                    // Print all results:
+                    document.write("<br><br> Hier ist die Wortliste Deutsch:" + WortlisteDeutsch);
+                    document.write("<br><br> Hier ist die Wortliste Dänisch:" + WortlisteDänisch);
+                    document.write("<br><br> Hier sind deine Antworten:" + Antwort);
+                    document.write("<br><br> Du hast " + Richtig + " richtig beantwortet.");
+                    document.write("<br><br> Hier sind deine richtigen Antworten:" + RA);
+                    document.write("<br><br> Du hast " + Falsch + " falsch beantwortet.");
+                    document.write("<br><br> Hier sind deine falschen Antworten:" + FA);
+                </script>
+            </p>
+        </div>
 	</body>
 </html>
