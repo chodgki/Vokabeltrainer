@@ -40,46 +40,51 @@
                 var Reihenfolge = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // Array to be shuffled
                 Reihenfolge = shuffle(Reihenfolge); // shuffle function applied to array to achieve random order
                 // 2 Arrays containing vocab:
-                var WortlisteDeutsch = ["Hallo!", "ich", "heißen", "Dänemark", "Mädchen", "Junge", "Mann", "Frau", "Schule", "schreiben"];
-                var WortlisteDänisch = ["Hej!", "jeg", "hedde", "Danmark", "pige", "dreng", "mand", "kvinde", "skole", "skrive"];
-                var Antwort = new Array; // New array for all answers
-                var RA = new Array; // New array for all correct answers
-                var FA = new Array; // New array for all incorrect answers
+                const WortlisteDeutsch = ["Hallo!", "ich", "heißen", "Dänemark", "Mädchen", "Junge", "Mann", "Frau", "Schule", "schreiben"];
+                const WortlisteDänisch = ["Hej!", "jeg", "hedde", "Danmark", "pige", "dreng", "mand", "kvinde", "skole", "skrive"];
+                var Antwort = []; // New array for all answers
+                var Richtig = []; // New array for all correct answers
+                var Falsch = []; // New array for all incorrect answers
                 var Zaehler = 0; // counter for while-loop
-                var Richtig = 0; // counter for correct answers
-                var Falsch = 0; // counter for incorrect answers
+                var Zaehl_Richtig = 0; // counter for correct answers
+                var Zaehl_Falsch = 0; // counter for incorrect answers
                 alert("Bitte übersetze die folgenden Wörter ins Dänische. Solltest du eine Antwort nicht wissen, schreibe Stop in das Eingabefeld, um zur nächsten Frage zu gelangen.") // Instructions
                 // while-loop: Ask for translations until counter reaches 10.
                 while (Zaehler < 10)
                 // All answers are added to generel Antwort-Array into respective position:
                 {
                     Antwort[Reihenfolge[Zaehler]] = prompt(WortlisteDeutsch[Reihenfolge[Zaehler]], "Bitte Übersetzung eingeben");
-                    // If correct, add to R(ight)A(nswer)-Array and add 1 to Richtig-counter. Add 1 to general counter to move to next word:
+                    console.log("Eingabe "+Antwort); // Im Browser: Elementinfo
+                    // If Answer is identical with WortlisteDänisch, add to R(ight)A(nswer)-Array and add 1 to Richtig-counter. Add 1 to general counter to move to next word:
                     if (Antwort[Reihenfolge[Zaehler]] == WortlisteDänisch[Reihenfolge[Zaehler]]) {
-                        RA[Richtig] = Antwort[Reihenfolge[Zaehler]];
-                        Richtig = Richtig + 1;
-                        Zaehler = Zaehler + 1
+                        Richtig.push(Antwort[Reihenfolge[Zaehler]]);
+                        Zaehl_Richtig += 1;
+                        Zaehler += 1;
                     }
                     // Way out: Type "Stop" to move to next word.
                     else if (Antwort[Reihenfolge[Zaehler]] == "Stop") {
-                        FA[Falsch] = Antwort[Reihenfolge[Zaehler]];
-                        Falsch = Falsch + 1;
-                        Zaehler = Zaehler + 1
+                        Falsch.push(Antwort[Reihenfolge[Zaehler]]);
+                        Zaehl_Falsch += 1;
+                        Zaehler += 1;
+                    }
+                    // Kill programme:
+                    else if (Antwort[Reihenfolge[Zaehler]] == "Exit") {
+                        Zaehler += 10;
                     }
                     // If incorrect, add to F(alse)A(nswer)-Array and add 1 to Falsch-counter. Do not add 1 to general counter so question is asked again:
                     else {
-                        FA[Falsch] = Antwort[Reihenfolge[Zaehler]];
-                        Falsch = Falsch + 1
+                        Falsch.push(Antwort[Reihenfolge[Zaehler]]);
+                        Zaehl_Falsch += 1;
                     }
                 };
                 // Print all results:
                 document.write("<br><br> Hier ist die Wortliste Deutsch:" + WortlisteDeutsch);
                 document.write("<br><br> Hier ist die Wortliste Dänisch:" + WortlisteDänisch);
                 document.write("<br><br> Hier sind deine Antworten:" + Antwort);
-                document.write("<br><br> Du hast " + Richtig + " richtig beantwortet.");
-                document.write("<br><br> Hier sind deine richtigen Antworten:" + RA);
-                document.write("<br><br> Du hast " + Falsch + " falsch beantwortet.");
-                document.write("<br><br> Hier sind deine falschen Antworten:" + FA);
+                document.write("<br><br> Du hast " + Zaehl_Richtig + " richtig beantwortet.");
+                document.write("<br><br> Hier sind deine richtigen Antworten:" + Richtig);
+                document.write("<br><br> Du hast " + Zaehl_Falsch + " falsch beantwortet.");
+                document.write("<br><br> Hier sind deine falschen Antworten:" + Falsch);
             </script>
         </p>
     </div>
