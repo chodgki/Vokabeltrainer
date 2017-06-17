@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- character encoding -->
+    <link rel="stylesheet" href="style.css">
+    <!-- CSS style sheet -->
+    <title>Vokabeltrainer - Versuch 4</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Added to reduce text width (see style.css) -->
+        <h1>21.05.2017 - Vokabeltrainer - Versuch 4</h1>
+        <p>Was er kann: Vokabeltrainer fragt in randomisierter Reihenfolge nach 10 dänischen Vokabeln. Wird eine Vokabel falsch übersetzt, wird immer weiter nachgefragt, bis die richtige Antwort gegeben wird oder der Nutzer "Stop" eingibt. Am Schluss wird angegeben, wie viele und welche Vokabeln (richtig) beantwortet wurden und wie viele falsche Antworten (auch beim gleichen Wort) bzw. Stops eingegeben wurden. </p>
+        <p>
+            <script type="text/javascript">
+                // Shuffle function
+                //Function taken from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+                function shuffle(array) {
+                    var currentIndex = array.length,
+                        temporaryValue, randomIndex;
+
+                    // While there remain elements to shuffle...
+                    while (0 !== currentIndex) {
+
+                        // Pick a remaining element...
+                        randomIndex = Math.floor(Math.random() * currentIndex);
+                        currentIndex -= 1;
+
+                        // And swap it with the current element.
+                        temporaryValue = array[currentIndex];
+                        array[currentIndex] = array[randomIndex];
+                        array[randomIndex] = temporaryValue;
+                    }
+
+                    return array;
+                }
+                
+                // Multiarray containing vocab
+                var multArray = [["Hallo!", "Hej!"],["ich", "jeg"],["heißen", "hedde"],["Dänemark", "Danmark"], ["Mädchen","pige"], ["Junge", "dreng"], ["Mann", "mand"],["Frau", "kvinde"], ["Schule", "skole"], ["schreiben", "skrive"]];
+                
+                shuffle(multArray); // shuffle function applied to array to achieve random order
+                
+                // Empty Arrays for Answers
+                var Antwort = []; // New array for all answers
+                var Richtig = []; // New array for all correct answers
+                var Falsch = []; // New array for all incorrect answers
+                var Zaehler = 0; // counter for while-loop
+                
+                alert("Bitte übersetze die folgenden Wörter ins Dänische. Solltest du eine Antwort nicht wissen, schreibe Stop in das Eingabefeld, um zur nächsten Frage zu gelangen.") // Instructions
+                
+                // while-loop: Ask for translations until counter reaches 10.
+                while (Zaehler < multArray.length)
+                // All answers are added to generel Antwort-Array into respective position:
+                {
+                    Antwort[Zaehler] = prompt(multArray[Zaehler][0], "Bitte Übersetzung eingeben");
+                    
+                    // If Answer is identical with WortlisteDänisch, add to R(ight)A(nswer)-Array and add 1 to Richtig-counter. Add 1 to general counter to move to next word:
+                    if (Antwort[Zaehler] == multArray[Zaehler][1]) {
+                        Richtig.push([Antwort[Zaehler], multArray[Zaehler][0]]);
+                        Zaehler += 1;
+                    }
+                    
+                    // Way out: Type "Stop" to move to next word.
+                    else if (Antwort[Zaehler] == "Stop") {
+                        Falsch.push([Antwort[Zaehler], multArray[Zaehler][0]]);
+                        alert(multArray[Zaehler][0] + " = " + multArray[Zaehler][1]);
+                        Zaehler += 1;
+                    }
+                    
+                    // Kill programme:
+                    else if (Antwort[Zaehler] == "Exit") {
+                        Zaehler += multArray.length;
+                    }
+                    
+                    // If incorrect, add to F(alse)A(nswer)-Array and add 1 to Falsch-counter. Do not add 1 to general counter so question is asked again:
+                    else {
+                        Falsch.push([Antwort[Zaehler], multArray[Zaehler][0]]);
+                        alert(multArray[Zaehler][0] + " = " + multArray[Zaehler][1]);
+                    }
+                };
+                // Print all results:
+                document.write("<br><b>Hier sind die abgefragten Vokabeln: </b><br>");
+                for (var i=0; i < multArray.length; i++) {
+                        document.write(multArray[i][0] + " = " + multArray[i][1] + "<br>");
+                    };
+                
+                document.write("<p><br><b>Hier ist deine Antwort-Statistik:</b>");
+                document.write("<br>Du hast <b>" + Richtig.length + "</b> richtig beantwortet. Hier sind deine richtigen Antworten: <br>");
+                for (var i=0; i < Richtig.length; i++) {
+                        document.write(Richtig[i][1] + " = " + Richtig[i][0] + "<br>");
+                    };
+                
+                document.write("<br><br> Du hast <b>" + Falsch.length + "</b> falsch beantwortet. Hier sind deine falschen Antworten: <br>");
+                for (var i=0; i < Falsch.length; i++) {
+                        document.write(Falsch[i][1] + " = " + Falsch[i][0] + "<br>");
+                    };
+                document.write("</p>");
+            </script>
+        </p>
+    </div>
+</body>
+
+</html>
